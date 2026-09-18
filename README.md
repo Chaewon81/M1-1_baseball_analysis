@@ -3,6 +3,7 @@
 KBO 공식 데이터를 사용해 KIA 타이거즈와 삼성 라이온즈의 2023~2025년 정규시즌 성적을 비교한 Python 프로젝트입니다. 시즌·월별 승률, 최근 10경기 승률, 구자욱·김도영의 시즌별 타격 기록을 분석합니다.
 
 - GitHub 저장소: <https://github.com/Chaewon81/M1-1_baseball_analysis>
+- 제출 버전: GitHub `main` 브랜치의 최신 커밋 기준
 
 ## 분석 질문
 
@@ -62,6 +63,9 @@ python visualize.py
 
 # 5. 보너스: 기준선 예측 검증과 2026년 예측
 python forecast.py
+
+# 6. 월별 패턴과 최근 10경기 추세 비교
+python compare_time_series.py
 ```
 
 `collect_games.py`만 간단히 확인하고 싶다면 기본 명령인 `python collect_games.py`를 실행하면 2025년 4월 데이터만 수집한다.
@@ -74,6 +78,18 @@ python forecast.py
 - `images/04_player_count_trend.png`: HR과 RBI 변화
 - `images/05_baseline_2025_evaluation.png`: 2023~2024년으로 만든 2025년 월별 승률 예측과 실제값 비교
 - `images/06_2026_baseline_forecast.png`: 2023~2025년 데이터를 이용한 2026년 기준선 승률 예측
+- `images/07_monthly_vs_rolling_2025.png`: 2025년 월별 승률과 최근 10경기 승률 비교
+
+## 실행 단계와 생성 파일
+
+| 단계 | 명령 | 주요 생성 파일 |
+|---|---|---|
+| 수집 | `python collect_games.py --all-seasons` | `data/raw/game_results_raw.csv` |
+| 전처리 | `python preprocess_games.py` | `data/processed/game_results.csv` |
+| 집계·검증 | `python analysis.py` | `season_summary.csv`, `monthly_summary.csv`, `rolling_win_rate.csv` |
+| 기본 시각화 | `python visualize.py` | `images/01~04_*.png` |
+| 보너스 예측 | `python forecast.py` | 예측 CSV 3개, `images/05~06_*.png` |
+| 시간 단위 비교 | `python compare_time_series.py` | `monthly_vs_rolling_2025.csv`, `images/07_*.png` |
 
 ## 데이터 검증 기준
 
